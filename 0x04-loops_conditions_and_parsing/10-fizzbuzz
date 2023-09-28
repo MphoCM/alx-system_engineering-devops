@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#fizzbuzz stuf
+#fizzbuzz stuff
 
 count=1
 while [ $count -ne 101 ]
