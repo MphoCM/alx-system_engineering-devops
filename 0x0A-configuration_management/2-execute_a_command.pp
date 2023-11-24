@@ -2,5 +2,6 @@
 
 exec  { 'killmenow':
   command  => '/usr/bin/pkill kilmenow',
+  onlyif   => 'pgrepm-f killmenow',
 
 }
