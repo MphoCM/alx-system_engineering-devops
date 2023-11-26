@@ -1,6 +1,10 @@
-# Puppet Manifest to install from pip3.
+# this pp file installs a package
+package { 'flask':
+  ensure   => '2.1.0',
+  provider => 'pip3'
+}
 
-package { 'Flask':
-  ensure   => '2.1.0', # Specify the desired version of Flask.
-  provider => 'pip3',  # Use pip3 as the package provider.
+package { 'werkzeug':
+  ensure   => '2.1.1',
+  provider => 'pip3'
 }
