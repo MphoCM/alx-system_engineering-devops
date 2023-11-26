@@ -1,9 +1,5 @@
-package { 'python3-pip':
-  ensure => present,
-}
+# Puppet Manifest to install from pip3.
 
-exec { 'install_flask':
-  command => '/usr/bin/pip3 install Flask==2.1.0 Werkzeug==2.0.2',
-  path    => '/usr/bin',
-  require => Package['python3-pip'],
-}
+package { 'flask':
+  ensure   => '2.1.0', # Specify the desired versiom of Flask.
+  provider => 'pip3',  # Us pip3 as the package provider.
