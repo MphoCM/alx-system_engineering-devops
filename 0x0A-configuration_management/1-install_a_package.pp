@@ -1,9 +1,8 @@
-package { 'python3-pip':
-  ensure => present,
+package { 'Flask':
+  ensure   => '2.1.0',
+  provider => 'pip3',
 }
-
-exec { 'install_flask':
-  command => '/usr/bin/pip3 install Flask==2.1.0 Werkzeug==2.0.2',
-  path    => '/usr/bin',
-  require => Package['python3-pip'],
+package { 'Werkzeug':
+  ensure   => '2.0.2',
+  provider => 'pip3',
 }
