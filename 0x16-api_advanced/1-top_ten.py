@@ -1,29 +1,21 @@
 #!/usr/bin/python3
-"""Import modules."""
-from requests import get
-from sys import argv
+"""Function to print hot posts on a given Reddit subreddit."""
+import requests
 
 
 def top_ten(subreddit):
-    """
-    function queries Reddit API to print titles
-    of first 10 hot posts in a subreddit.
-    """
-    url = "https://www.reddit.com/r/{}/hot.json?count=10".format(subreddit)
-    head = {'User-Agent': 'Sima Njoli'}
-
-    response = get(url, headers=head)
-
-    if response.status_code == 200:
-        data = response.json()
-        count = data['data']['children']
-        print('\n'.join([dic.get('data').get('title')
-              for dic in count][:10]))
-    elif response.status_code == 404:
+    """Print the titles of the 10 hottest posts on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/MShousha)"
+    }
+    params = {
+        "limit": 10
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    if response.status_code == 404:
         print("None")
-    else:
-        print("None")
-
-
-if __name__ == "__main__":
-    top_ten(argv[1])
+        return
+    results = response.json().get("data")
+    [print(c.get("data").get("title")) for c in results.get("children")]
